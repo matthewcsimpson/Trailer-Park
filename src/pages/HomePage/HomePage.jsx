@@ -7,7 +7,6 @@ import {
 } from "../../utilities/MovieLoadingUtils";
 
 // Components
-import PageHeader from "../../components/PageHeader/PageHeader";
 import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
@@ -34,8 +33,6 @@ const HomePage = () => {
 
   return (
     <>
-      <PageHeader />
-      <div className="sitemenu"></div>
       <div className="movielists__container">
         <h2>Search for a title</h2>
         <form className="searchform" autoComplete="off">
@@ -46,7 +43,9 @@ const HomePage = () => {
           ></input>
         </form>
 
-        <h2 className="movielists__heading">Search results</h2>
+        {searchedMovies.length > 0 && (
+          <h2 className="movielists__heading">Search results</h2>
+        )}
         <MovieList movies={searchedMovies} />
         <h2 className="movielists__heading">Popular Purchaseable Movies</h2>
         <MovieList movies={buyableMovies} />

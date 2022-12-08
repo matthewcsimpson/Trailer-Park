@@ -1,12 +1,26 @@
 // Styles
 import "./MovieCard.scss";
 
+// Libraries
+import { useNavigate } from "react-router-dom";
+
 // Variables
 const REACT_APP_TMDB_IMAGE_URL = process.env.REACT_APP_TMDB_IMAGE_URL;
 
-const MovieCard = ({ movie }) => {
+function MovieCard({ movie }) {
+  const nav = useNavigate();
+
+  /**
+   * Function to handle clicking on each movie card.
+   * @param {event} e
+   */
+  const handleCardClick = (e) => {
+    e.preventDefault();
+    nav(`/m/${movie.id}`);
+  };
+
   return (
-    <div className="moviecard">
+    <div className="moviecard" onClick={handleCardClick}>
       <div className="moviecard__posterbox">
         <img
           className="moviecard__poster"
@@ -19,6 +33,6 @@ const MovieCard = ({ movie }) => {
       </div>
     </div>
   );
-};
+}
 
 export default MovieCard;

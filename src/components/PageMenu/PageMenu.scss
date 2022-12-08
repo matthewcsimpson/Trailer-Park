@@ -1,0 +1,18 @@
+.pagemenu {
+    width: 100%;
+
+    &__list {
+        list-style: none;
+        background-color: gray;
+        margin: 0;
+        height: 3rem;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__item {
+        display: inline-block;
+        font-size: 1rem;
+        text-decoration: none;
+    }
+}

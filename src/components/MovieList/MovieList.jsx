@@ -9,13 +9,7 @@ const MovieList = ({ movies, REACT_APP_TMDB_IMAGE_URL }) => {
     <div className="movielist">
       {movies &&
         movies.map((movie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              REACT_APP_TMDB_IMAGE_URL={REACT_APP_TMDB_IMAGE_URL}
-            />
-          );
+          return <MovieCard key={movie.id} movie={movie} />;
         })}
     </div>
   );
