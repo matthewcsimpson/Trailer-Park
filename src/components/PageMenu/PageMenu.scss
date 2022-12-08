@@ -3,16 +3,31 @@
 
     &__list {
         list-style: none;
-        background-color: gray;
         margin: 0;
         height: 3rem;
         display: flex;
         justify-content: space-around;
+        align-items: center;
     }
 
     &__item {
         display: inline-block;
-        font-size: 1rem;
+        color: #333;
+        font-size: 14px;
+        font-size: 0.95rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    &__link {
         text-decoration: none;
+
+        &:visited {
+            color: #333;
+            font-size: 14px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
     }
 }
