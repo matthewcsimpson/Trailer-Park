@@ -10,6 +10,8 @@ const REACT_APP_TMDB_DISCOVER_MOVIE_URL =
 
 const REACT_APP_TMDB_SEARCH_URL = process.env.REACT_APP_TMDB_SEARCH_URL;
 
+const REACT_APP_TMDB_MOVIE_BY_ID = process.env.REACT_APP_TMDB_MOVIE_BY_ID;
+
 /**
  * Function that loads the popular movies with a given monetization type.
  *
@@ -59,4 +61,30 @@ const loadSearchMovies = (setFunc, query) => {
   }
 };
 
-export { loadPopularMovies, loadSearchMovies };
+const getMovieDetailsById = (id, setMovie, setCredits, setVideos) => {
+  if (id) {
+    axios
+      .all([
+        axios.get(`${REACT_APP_TMDB_MOVIE_BY_ID}${id}?api_key=${API_KEY}`),
+        axios.get(
+          `${REACT_APP_TMDB_MOVIE_BY_ID}${id}/credits?api_key=${API_KEY}`
+        ),
+        axios.get(
+          `${REACT_APP_TMDB_MOVIE_BY_ID}${id}/videos?api_key=${API_KEY}`
+        ),
+      ])
+      .then(
+        axios.spread((movie, credits, videos) => {
+          setMovie(movie.data);
+          // console.log(videos.data.results);
+          setCredits(credits.data);
+          setVideos(videos.data.results);
+        })
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+};
+
+export { loadPopularMovies, loadSearchMovies, getMovieDetailsById };
