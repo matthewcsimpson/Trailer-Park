@@ -8,6 +8,7 @@ import MoviePage from "./pages/MoviePage/MoviePage";
 // Components
 import PageHeader from "./components/PageHeader/PageHeader";
 import PageMenu from "./components/PageMenu/PageMenu";
+import PageFooter from "./components/PageFooter/PageFooter";
 
 // Libraries
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/m/:tmdb_id" element={<MoviePage />} />
         </Routes>
       </BrowserRouter>
+      <PageFooter />
     </div>
   );
 }
