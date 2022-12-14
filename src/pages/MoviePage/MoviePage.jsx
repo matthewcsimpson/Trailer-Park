@@ -105,13 +105,15 @@ const MoviePage = () => {
             })
             .map((video) => {
               return (
-                <div className="moviepage__singlevideocontainer">
+                <div
+                  key={video.key}
+                  className="moviepage__singlevideocontainer"
+                >
                   <iframe
                     width="560"
                     height="315"
-                    frameborder="0"
+                    frameBorder="0"
                     className="moviepage__singlevideo"
-                    key={video.key}
                     title={video.title}
                     src={`https://www.youtube.com/embed/${video.key}`}
                     type="video/mp4"

@@ -7,6 +7,7 @@ import {
 } from "../../utilities/MovieLoadingUtils";
 
 // Components
+import PageSearchForm from "../../components/PageSearchForm/PageSearchForm";
 import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
@@ -34,14 +35,7 @@ const HomePage = () => {
   return (
     <>
       <div className="movielists__container">
-        <h2>Search for a title</h2>
-        <form className="searchform" autoComplete="off">
-          <input
-            className="searchform__input"
-            name="searchform"
-            onChange={handleSearchFieldChange}
-          ></input>
-        </form>
+        <PageSearchForm handleSearchFieldChange={handleSearchFieldChange} />
 
         {searchedMovies.length > 0 && (
           <h2 className="movielists__heading">Search results</h2>

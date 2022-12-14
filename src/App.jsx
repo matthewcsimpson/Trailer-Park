@@ -16,9 +16,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <PageHeader />
-      <PageMenu />
-      <BrowserRouter>
+      <BrowserRouter basename="/trailer-park">
+        <PageHeader />
+        <PageMenu />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/m/:tmdb_id" element={<MoviePage />} />

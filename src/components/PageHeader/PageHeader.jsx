@@ -14,7 +14,6 @@ const PageHeader = () => {
         alt="awesome friday plusses"
       />
       <img src={headerimg} alt="Awesome Friday!" className="pageheader__logo" />
-      {/* <h1 className="pageheader__heading">Movie Trailers</h1> */}
     </div>
   );
 };
