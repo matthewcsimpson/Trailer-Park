@@ -76,7 +76,6 @@ const getMovieDetailsById = (id, setMovie, setCredits, setVideos) => {
       .then(
         axios.spread((movie, credits, videos) => {
           setMovie(movie.data);
-          // console.log(videos.data.results);
           setCredits(credits.data);
           setVideos(videos.data.results);
         })

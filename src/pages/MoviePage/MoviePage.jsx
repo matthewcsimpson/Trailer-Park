@@ -5,12 +5,19 @@ import "./MoviePage.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// Components
+import MoviePageHeader from "../../components/MoviePageHeader/MoviePageHeader";
+import StreamingLinks from "../../components/StreamingLinks/StreamingLinks";
+import MovieTrailers from "../../components/MovieTrailers/MovieTrailers";
+
 // Functions
 import { getMovieDetailsById } from "../../utilities/MovieLoadingUtils";
 
 const MoviePage = () => {
   // Params
   const { tmdb_id } = useParams();
+
+  // TMDB base IMG URL
   const REACT_APP_TMDB_IMAGE_URL = process.env.REACT_APP_TMDB_IMAGE_URL;
 
   //State
@@ -25,13 +32,11 @@ const MoviePage = () => {
   return (
     <div className="moviepage">
       {movie && (
-        <div className="moviepage__header">
-          <img
-            src={`${REACT_APP_TMDB_IMAGE_URL}${movie.backdrop_path}`}
-            alt={movie.title}
-            className="moviepage__headerimg"
-          />
-        </div>
+        <MoviePageHeader
+          REACT_APP_TMDB_IMAGE_URL={REACT_APP_TMDB_IMAGE_URL}
+          backdrop={movie.backdrop_path}
+          title={movie.title}
+        />
       )}
       {movie && (
         <div className="moviepage__titlecontainer">
@@ -91,40 +96,17 @@ const MoviePage = () => {
       </div>
       {videos && (
         <div className="moviepage__titlecontainer">
+          <h2 className="moviepage__title">Streaming Offers</h2>
+        </div>
+      )}
+
+      {movie && <StreamingLinks imdb_id={movie.imdb_id} />}
+      {videos && (
+        <div className="moviepage__titlecontainer">
           <h2 className="moviepage__title">Videos</h2>
         </div>
       )}
-      {videos && (
-        <div className="moviepage__videoscontainer">
-          {videos
-            .filter((video) => {
-              return (
-                video.type.toLowerCase() === "trailer" ||
-                video.type.toLowerCase() === "teaser"
-              );
-            })
-            .map((video) => {
-              return (
-                <div
-                  key={video.key}
-                  className="moviepage__singlevideocontainer"
-                >
-                  <iframe
-                    width="560"
-                    height="315"
-                    frameBorder="0"
-                    className="moviepage__singlevideo"
-                    title={video.title}
-                    src={`https://www.youtube.com/embed/${video.key}`}
-                    type="video/mp4"
-                    allowFullScreen
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  ></iframe>
-                </div>
-              );
-            })}
-        </div>
-      )}
+      {videos && <MovieTrailers videos={videos} />}
     </div>
   );
 };

@@ -1,0 +1,41 @@
+/* just watch wisdget styles */
+
+.just-watch-widget-af {
+    border-width: 1px;
+    border-color: #dcdcdc;
+    border-style: solid;
+    padding: 10px;
+    margin: 1rem 0 0;
+    font-size: small;
+    width: 50%;
+}
+
+#jw-widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // justify-content: space-evenly;
+}
+
+span.jw-logo {
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 66px;
+    height: 10px;
+    margin-left: 3px;
+    background: url(https://widget.justwatch.com/assets/JW_logo_black_10px.svg);
+    overflow: hidden;
+    text-indent: -3000px;
+}
+
+.just-watch-widget-af p {
+    font-size: small;
+}
+
+a.jw-link {
+    font-size: 11px;
+    font-family: sans-serif;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 50px;
+}

@@ -4,7 +4,6 @@ import "./PageSearchForm.scss";
 function PageSearchForm({ handleSearchFieldChange }) {
   return (
     <>
-      {" "}
       <form className="searchform" autoComplete="off">
         <input
           placeholder="Search for a movie..."
