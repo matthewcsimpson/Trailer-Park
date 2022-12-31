@@ -14,7 +14,7 @@
     "sass": "^1.56.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://localhost:3000/trailer-park",
+  "homepage": "http://awesomefriday.ca/trailer-park",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

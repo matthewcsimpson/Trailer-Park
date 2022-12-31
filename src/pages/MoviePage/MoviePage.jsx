@@ -7,8 +7,9 @@ import { useParams } from "react-router-dom";
 
 // Components
 import MoviePageHeader from "../../components/MoviePageHeader/MoviePageHeader";
-import StreamingLinks from "../../components/StreamingLinks/StreamingLinks";
+import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import MovieTrailers from "../../components/MovieTrailers/MovieTrailers";
+import PageSidebar from "../../components/PageSidebar/PageSidebar";
 
 // Functions
 import { getMovieDetailsById } from "../../utilities/MovieLoadingUtils";
@@ -30,83 +31,38 @@ const MoviePage = () => {
   }, [tmdb_id]);
 
   return (
-    <div className="moviepage">
-      {movie && (
-        <MoviePageHeader
-          REACT_APP_TMDB_IMAGE_URL={REACT_APP_TMDB_IMAGE_URL}
-          backdrop={movie.backdrop_path}
-          title={movie.title}
-        />
-      )}
-      {movie && (
-        <div className="moviepage__titlecontainer">
-          <h1 className="moviepage__title">{movie.title}</h1>
-        </div>
-      )}
-      <div className="moviepage__postercontainer">
+    <div className="mpcontainer">
+      <div className="moviepage">
         {movie && (
-          <>
-            <img
-              src={`${REACT_APP_TMDB_IMAGE_URL}${movie.poster_path}`}
-              alt={movie.title}
-              className="moviepage__poster"
-            />
-            <div className="moviepage__infocontainer">
-              <p className="moviepage__text moviepage__text--title moviepage__text--bold">
-                Starring:
-              </p>
-              <ul className="moviepage__castlist">
-                {credits &&
-                  credits.cast.slice(0, 10).map((person) => {
-                    return (
-                      <li key={person.id} className="moviepage__name">
-                        {person.name}
-                      </li>
-                    );
-                  })}
-              </ul>
-              <p className="moviepage__text moviepage__text--title moviepage__text--bold">
-                Director:
-              </p>
-              <ul className="moviepage__castlist">
-                {credits &&
-                  credits.crew
-                    .filter((person) => {
-                      return person.job === "Director";
-                    })
-                    .map((person) => {
-                      return (
-                        <li key={person.id} className="moviepage__name">
-                          {person.name}
-                        </li>
-                      );
-                    })}
-              </ul>
-              <p className="moviepage__text moviepage__text--title moviepage__text--bold">
-                Synopsis:
-              </p>
-              <ul className="moviepage__castlist">
-                <li key={movie.id} className="moviepage__name">
-                  {movie.overview}
-                </li>
-              </ul>
-            </div>
-          </>
+          <MoviePageHeader
+            REACT_APP_TMDB_IMAGE_URL={REACT_APP_TMDB_IMAGE_URL}
+            backdrop={movie.backdrop_path}
+            title={movie.title}
+          />
         )}
-      </div>
-      {videos && (
-        <div className="moviepage__titlecontainer">
-          <h2 className="moviepage__title">Streaming Offers</h2>
+        {movie && (
+          <div className="moviepage__titlecontainer">
+            <h1 className="moviepage__title">{movie.title}</h1>
+          </div>
+        )}
+        <div className="moviepage__postercontainer">
+          {movie && (
+            <MovieDetails
+              REACT_APP_TMDB_IMAGE_URL={REACT_APP_TMDB_IMAGE_URL}
+              movie={movie}
+              credits={credits}
+            />
+          )}
         </div>
-      )}
 
-      {movie && <StreamingLinks imdb_id={movie.imdb_id} />}
-      {videos && (
-        <div className="moviepage__titlecontainer">
-          <h2 className="moviepage__title">Videos</h2>
-        </div>
-      )}
-      {videos && <MovieTrailers videos={videos} />}
+        {videos && (
+          <div className="moviepage__titlecontainer">
+            <h2 className="moviepage__title">Videos</h2>
+          </div>
+        )}
+        {videos && <MovieTrailers videos={videos} />}
+      </div>
+      <PageSidebar />
     </div>
   );
 };

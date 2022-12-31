@@ -1,18 +1,24 @@
-.moviepage {
+.mpcontainer {
     width: 100%;
+    display: flex;
+}
+
+.moviepage {
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     &__header {
-        width: 100%;
+        width: 90%;
+        border-radius: 20px;
+        overflow: hidden;
     }
 
     &__headerimg {
         width: 100%;
         object-fit: cover;
         object-position: top;
-        height: 400px;
     }
 
     &__titlecontainer {

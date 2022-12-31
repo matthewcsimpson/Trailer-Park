@@ -9,10 +9,12 @@ function StreamingLinks({ imdb_id }) {
 
   useEffect(() => {
     if (imdb_id) {
-      const jwscript = document.createElement("script");
-      jwscript.async = true;
-      jwscript.src = "https://widget.justwatch.com/justwatch_widget.js";
-      document.body.appendChild(jwscript);
+      setTimeout(() => {
+        const jwscript = document.createElement("script");
+        jwscript.async = true;
+        jwscript.src = "https://widget.justwatch.com/justwatch_widget.js";
+        document.body.appendChild(jwscript);
+      }, [5000]);
     }
   }, [imdb_id]);
 
