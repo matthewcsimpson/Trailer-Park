@@ -1,0 +1,14 @@
+.searchform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__input {
+        width: 90%;
+        height: 3rem;
+        font-size: 2rem;
+        border-radius: 0.625rem;
+        overflow: hidden;
+        padding-left: 10px;
+    }
+}

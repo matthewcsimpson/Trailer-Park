@@ -10,9 +10,9 @@ const PageMenu = () => {
       <div className="pagemenu">
         <ul className="pagemenu__list">
           <li className="pagemenu__item">
-            <NavLink className="pagemenu__link" to="https://awesomefriday.ca">
+            <a className="pagemenu__link" href="https://awesomefriday.ca">
               Back to AwesomeFriday.ca
-            </NavLink>
+            </a>
           </li>
           <li className="pagemenu__item">
             <NavLink className="pagemenu__link" to="/">
