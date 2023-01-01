@@ -8,6 +8,12 @@ import axios from "axios";
 function PageSidebar() {
   const [lastFive, setLastFive] = useState([]);
 
+  /**
+   * Occasionally strings retned from wordpress contain ascii codes for special characters.
+   * This is a function to isolate and replace them.
+   * @param {String} string
+   * @returns
+   */
   const replaceCharCode = (string) => {
     let regex = /&#[0-9]+;/;
     let numreg = /[0-9]+/;
@@ -18,13 +24,14 @@ function PageSidebar() {
       if (stringarr[i].includes(stringarr[i].match(regex))) {
         let replacement = String.fromCharCode(stringarr[i].match(numreg));
 
-        let stringr = stringarr[i].split("&");
+        let stringr = stringarr[i].split("");
+        stringr.splice(
+          stringr.indexOf("#") - 1,
+          stringr.indexOf(";") + 1,
+          replacement,
+          stringr[stringr.indexOf(";") + 1] || ""
+        );
 
-        for (let i = 0; i < stringr.length; i++) {
-          if (stringr[i].match(numreg)) {
-            stringr[i] = replacement;
-          }
-        }
         stringarr[i] = stringr.join("");
       }
     }
@@ -37,11 +44,12 @@ function PageSidebar() {
    */
   const loadLastFivePosts = async () => {
     await axios
-      .get("https://awesomefriday.ca/wp-json/wp/v2/posts?per_page=5")
+      .get("https://awesomefriday.ca/wp-json/wp/v2/posts?per_page=10")
       .then((res) => {
         setLastFive(res.data);
         console.log(res.data);
-      });
+      })
+      .catch((err) => console.log("wordpress retreival:", err));
   };
 
   useEffect(() => {
@@ -339,26 +347,27 @@ function PageSidebar() {
         </section>
 
         <section id="block-18" className="widget widget_block">
-          <h2 className="widget-title widget-title-af">Last Five Posts</h2>
+          <h2 className="widget-title widget-title-af">Recent Posts</h2>
         </section>
         <section
           id="block-17"
           className="widget widget_block widget_recent_entries"
         >
           <ul className="wp-block-latest-posts__list wp-block-latest-posts">
-            {lastFive &&
-              lastFive.map((post) => {
-                return (
-                  <li key={post.id}>
-                    <a
-                      className="wp-block-latest-posts__post-title"
-                      href={post.link}
-                    >
-                      {replaceCharCode(post.title.rendered)}
-                    </a>
-                  </li>
-                );
-              })}
+            {lastFive
+              ? lastFive.map((post) => {
+                  return (
+                    <li key={post.id}>
+                      <a
+                        className="wp-block-latest-posts__post-title"
+                        href={post.link}
+                      >
+                        {replaceCharCode(post.title.rendered)}
+                      </a>
+                    </li>
+                  );
+                })
+              : null}
           </ul>
         </section>
       </aside>
