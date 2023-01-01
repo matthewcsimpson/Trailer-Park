@@ -17,3 +17,7 @@ Currently deployed here <https://awesomefriday.ca/trailer-park/>. Note: currentl
 - Streaming links for movies.
 - More movie details loaded.
 - Mobile styling.
+
+### Screenshot
+
+![Screenshot](https://github.com/matthewcsimpson/awesome-friday-trailer-park/blob/main/src/assets/screenshot.png)
