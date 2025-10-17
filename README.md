@@ -4,11 +4,7 @@ This is a React App created with `create-react-app` that searches The Movie Data
 
 Designed to be a tool for myself to more easily search out trailers and basic information.
 
-Currently deployed here <https://awesomefriday.ca/trailer-park/>. Note: currently best viewed on desktop.
-
-### Currently:
-
-- Loads popular movies from The Movie Database that are digitally purchasable, rentable, streamable, and streamable with ads.
+- Loads popular movies from The Movie Database.
 - Queries The Movie Database when a search parameter is entereed, and only displays results if there are any.
 - Displays the header image, cast and director information, synopsis, and available trailers for a selected movie.
 
